@@ -1,33 +1,38 @@
 <template>
   <div class="aside">
     <el-menu
-      background-color="#00BFFF"
+      background-color="#2b4b6b"
       text-color="#fff"
     >
-      <el-submenu class="nav-title" index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span slot="title">导航一</span>
-        </template>
-        <el-menu-item @click="$router.push({ path: '/menu/one', query: { name: '菜单栏1' }})">菜单栏1</el-menu-item>
-        <el-menu-item @click="$router.push({ path: '/menu/two', query: { name: '菜单栏2' }})">菜单栏2</el-menu-item>
-        <el-menu-item @click="$router.push({ path: '/menu/three', query: { name: '菜单栏3' }})">菜单栏3</el-menu-item>
-      </el-submenu>
-      <el-submenu class="nav-title" index="2">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span slot="title">导航二</span>
-        </template>
-        <el-menu-item @click="$router.push({ path: '/menu/four', query: { name: '菜单栏4' }})">菜单栏4</el-menu-item>
-        <el-menu-item @click="$router.push({ path: '/menu/five', query: { name: '菜单栏5' }})">菜单栏5</el-menu-item>
-      </el-submenu>
+      <template v-if="rightList">
+        <el-submenu class="nav-title" v-for="(item, index) in rightList" :key="index" :index="index + ''">
+          <template slot="title">
+            {{item.id}}
+            <i class="el-icon-location"></i>
+            <span slot="title">{{ item.authName }}</span>
+          </template>
+          <el-menu-item v-for="(childItem, idx) in item.children" :key="idx">{{ childItem.authName }}</el-menu-item>
+        </el-submenu>
+      </template>
     </el-menu>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-
+  data () {
+    return {
+      rightList: []
+    }
+  },
+  computed: {
+    ...mapState(['userInfo'])
+  },
+  created () {
+    console.log(this.userInfo)
+    this.rightList = this.userInfo.rights
+  }
 }
 </script>
 

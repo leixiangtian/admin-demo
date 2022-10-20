@@ -46,6 +46,22 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  console.log('to', to)
+  console.log('from', from)
+  if (to.path === '/login') {
+    next()
+  } else {
+    const token = sessionStorage.getItem('admin_demo_token')
+    console.log(token)
+    if (!token) {
+      next('/login')
+    } else {
+      next()
+    }
+  }
+})
+
 const originalPush = VueRouter.prototype.push
 // 重写了原型上的push方法，统一的处理了错误信息
 VueRouter.prototype.push = function push (location) {

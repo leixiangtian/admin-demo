@@ -56,7 +56,6 @@ export default {
             username: this.userData.username,
             password: this.userData.password
           }).then(res => {
-            console.log(res)
             this.isLogin = false
             if (!res.data) {
               this.$message({
@@ -66,7 +65,7 @@ export default {
               return false
             }
             this.setUser(res.data)
-            console.log(this.$store.state.user)
+            console.log(this.$store.state.userInfo)
             this.$router.push('/')
           })
         }

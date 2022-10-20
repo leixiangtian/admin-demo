@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     breads: [],
-    user: {}
+    userInfo: JSON.parse(sessionStorage.getItem('admin_demo_userInfo')) || {},
+    token: ''
   },
   mutations: {
     addBread (state, bread) {
@@ -20,8 +21,15 @@ export default new Vuex.Store({
     removeBread (state, bread) {
       state.breads = state.breads.filter(_bread => _bread !== bread)
     },
-    setUser (state, user) {
-      state.user = user
+    setUser (state, userInfo) {
+      state.userInfo = userInfo
+      sessionStorage.setItem('admin_demo_userInfo', JSON.stringify(userInfo))
+      this.commit('setToken', userInfo.token)
+      sessionStorage.setItem('admin_demo_token', userInfo.token)
+      console.log(state.token)
+    },
+    setToken (state, token) {
+      state.token = token
     }
   },
   actions: {
