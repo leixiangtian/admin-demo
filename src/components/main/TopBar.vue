@@ -5,7 +5,7 @@
        搜索
       </template>
     </el-input>
-    <el-button v-permission.disabled="!rights.includes('add')" type="primary" @click="$emit('show')">添加商品</el-button>
+    <el-button type="primary" @click="$emit('show')">添加商品</el-button>
   </div>
 </template>
 
@@ -13,17 +13,13 @@
 export default {
   data () {
     return {
-      inputValue: '',
-      rights: []
+      inputValue: ''
     }
   },
   methods: {
     handleSearch () {
       this.$emit('handleSearch', this.inputValue)
     }
-  },
-  created () {
-    this.rights = this.$route.meta.rights
   }
 }
 </script>

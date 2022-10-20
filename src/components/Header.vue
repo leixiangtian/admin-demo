@@ -29,7 +29,6 @@ export default {
         type: 'warning'
       }).then(() => {
         setTimeout(() => {
-          sessionStorage.clear()
           this.$router.push('/login')
           window.location.reload()
         }, 500)
@@ -46,11 +45,11 @@ export default {
 .header {
   width: 100%;
   height: 100%;
-  background-color: #262f3e;
+  background-color: #00BFFF;
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
-  box-shadow: 0 2px 5px #262f3e;
+  box-shadow: 0 2px 5px #00BFFF;
   &-left {
     height: 100%;
     display: flex;

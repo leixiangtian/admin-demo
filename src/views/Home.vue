@@ -47,7 +47,7 @@ export default {
 }
 .el-aside {
   height: 100%;
-  background-color: #262f3e;
+  background-color: #00BFFF;
 }
 .el-main {
   height: 100%;

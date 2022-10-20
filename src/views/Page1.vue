@@ -35,10 +35,10 @@
       >
         <template v-slot:default="scope">
           <div class="btns">
-            <el-button v-permission.disabled="!rights.includes('edit')" type="primary" @click="handleUpdate(scope)">
+            <el-button type="primary" @click="handleUpdate(scope)">
               <i class="el-icon-edit"></i>
             </el-button>
-            <el-button v-permission.remove="!rights.includes('delete')" type="danger" @click="handleDelete(scope)">
+            <el-button type="danger" @click="handleDelete(scope)">
               <i class="el-icon-delete"></i>
             </el-button>
           </div>
@@ -75,8 +75,7 @@ export default {
       cardShow: false,
       isAdd: true,
       rowData: {},
-      isOperate: false,
-      rights: []
+      isOperate: false
     }
   },
   methods: {
@@ -106,15 +105,6 @@ export default {
           this.$message({
             message: '添加成功！',
             type: 'success',
-            customClass: 'v-message',
-            offset: 100
-          })
-        }).catch(err => {
-          this.cardShow = false
-          this.isOperate = false
-          this.$message({
-            message: err,
-            type: 'error',
             customClass: 'v-message',
             offset: 100
           })
@@ -190,7 +180,6 @@ export default {
     }
   },
   created () {
-    this.rights = this.$route.meta.rights
     if (this.$route.query.name) {
       this.addBread({
         name: this.$route.query.name,
