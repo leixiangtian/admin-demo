@@ -7,18 +7,18 @@ import store from '../store'
 
 Vue.use(VueRouter)
 
-const menuOneRule = { path: '/menuOne', name: 'menuOne', component: () => import('../views/Page1.vue') }
-const menuTwoRule = { path: '/menuTwo', name: 'menuTwo', component: () => import('../views/Page2.vue') }
-const menuThreeRule = { path: '/menuThree', name: 'menuThree', component: () => import('../views/Page3.vue') }
-const menuFourRule = { path: '/menuFour', name: 'menuFour', component: () => import('../views/Page4.vue') }
-const menuFiveRule = { path: '/menuFive', name: 'menuFive', component: () => import('../views/Page5.vue') }
+const menuOneRule = { path: '/menu/one', name: 'menuOne', component: () => import('../views/Page1.vue') }
+const menuTwoRule = { path: '/menu/two', name: 'menuTwo', component: () => import('../views/Page2.vue') }
+const menuThreeRule = { path: '/menu/three', name: 'menuThree', component: () => import('../views/Page3.vue') }
+const menuFourRule = { path: '/menu/four', name: 'menuFour', component: () => import('../views/Page4.vue') }
+const menuFiveRule = { path: '/menu/five', name: 'menuFive', component: () => import('../views/Page5.vue') }
 
 const ruleMap = {
-  menuOne: menuOneRule,
-  menuTwo: menuTwoRule,
-  menuThree: menuThreeRule,
-  menuFour: menuFourRule,
-  menuFive: menuFiveRule
+  '/menu/one': menuOneRule,
+  '/menu/two': menuTwoRule,
+  '/menu/three': menuThreeRule,
+  '/menu/four': menuFourRule,
+  '/menu/five': menuFiveRule
 }
 
 const routes = [
@@ -66,7 +66,17 @@ const router = new VueRouter({
 export const initDynamicRouter = () => {
   console.log(router)
   const rights = store.state.userInfo.rights
+  rights.forEach(item => {
+    console.log(item)
+    item.children.forEach(child => {
+      console.log(child)
+      const rule = ruleMap[child.path]
+      console.log(rule)
+      // router.addRoute('Home', rule)
+    })
+  })
   console.log(rights)
+  console.log(ruleMap)
   // const routes = router.options.routes
 }
 

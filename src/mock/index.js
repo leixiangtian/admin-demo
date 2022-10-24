@@ -53,12 +53,12 @@ const users = [
       children: [{
         id: 11,
         authName: '一级项目1',
-        path: '/',
+        path: '/menu/one',
         rights: ['view', 'edit', 'add', 'delete']
       }, {
-        id: 11,
+        id: 12,
         authName: '一级项目2',
-        path: '/',
+        path: '/menu/one',
         rights: ['view', 'edit', 'add', 'delete']
       }]
     }, {
@@ -66,9 +66,9 @@ const users = [
       authName: '二级菜单',
       icon: 'icon-menu',
       children: [{
-        id: 22,
+        id: 21,
         authName: '二级项目1',
-        path: '/',
+        path: '/menu/two',
         rights: ['view', 'edit', 'add', 'delete']
       }]
     }]
