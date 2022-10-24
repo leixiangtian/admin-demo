@@ -27,6 +27,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import { initDynamicRouter } from '@/router'
 
 export default {
   data () {
@@ -66,6 +67,8 @@ export default {
             }
             this.setUser(res.data)
             console.log(this.$store.state.userInfo)
+            // 动态路由
+            initDynamicRouter()
             this.$router.push('/')
           })
         }

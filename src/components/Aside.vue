@@ -11,7 +11,7 @@
             <i class="el-icon-location"></i>
             <span slot="title">{{ item.authName }}</span>
           </template>
-          <el-menu-item v-for="(childItem, idx) in item.children" :key="idx">{{ childItem.authName }}</el-menu-item>
+          <el-menu-item v-for="(childItem, idx) in item.children" :key="idx" @click="goTo(childItem)">{{ childItem.authName }}</el-menu-item>
         </el-submenu>
       </template>
     </el-menu>
@@ -32,6 +32,12 @@ export default {
   created () {
     console.log(this.userInfo)
     this.rightList = this.userInfo.rights
+  },
+  methods: {
+    goTo (item) {
+      console.log(item)
+      this.$router.push({ path: item.path, query: { name: item.authName } })
+    }
   }
 }
 </script>
